@@ -61,7 +61,7 @@ import frc.util.lib.SwerveUtil;
  */
 public class SwerveDriveTrain extends SubsystemBase {
 
-   private boolean fieldRelative = true;
+   private boolean fieldRelative = false;
 
    // Create Navx
    private AHRS navx = new AHRS(NavXComType.kMXP_SPI);
@@ -272,10 +272,8 @@ public class SwerveDriveTrain extends SubsystemBase {
     */
    public void drive(Translation2d translation, double rotation, boolean isOpenLoop) {
 
-      this.chassisSpeeds = fieldRelative
-            ? ChassisSpeeds.fromFieldRelativeSpeeds(translation.getX(), translation.getY(), rotation,
-                  this.getRotation())
-            : new ChassisSpeeds(translation.getX(), translation.getY(), rotation);
+      this.chassisSpeeds =  ChassisSpeeds.fromFieldRelativeSpeeds(translation.getX(), translation.getY(), rotation,
+                  this.getRotation());
 
       this.chassisSpeeds = SwerveUtil.discretize(this.chassisSpeeds, -4.0);
 

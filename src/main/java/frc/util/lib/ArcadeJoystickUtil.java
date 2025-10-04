@@ -36,5 +36,14 @@ public class ArcadeJoystickUtil {
 
     // Hypotenuse from controls
     double controlsHypot = 0.0;
+
+    public static double[] regularGamePadControls(double x, double y, double maxMagnitude){
+        double[] controlVar = new double[2];
+        controlVar[0] = Math.hypot(x, y)*maxMagnitude;
+        controlVar[1] =  Math.atan2(y, x);
+
+        return controlVar;
     }
+    
 }
+
